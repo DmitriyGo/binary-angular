@@ -1,0 +1,28 @@
+.info-box{
+  display: flex;
+  justify-content: space-evenly;
+  .box{
+    display: flex;
+    align-items: center;
+    &:nth-child(1) .square{
+      background-color: AQUAMARINE;
+    }
+    &:nth-child(2) .square{
+      background-color: MEDIUMORCHID;
+    }
+    &:nth-child(3) .square{
+      background-color: CHARTREUSE;
+    }
+    &:nth-child(4) .square{
+      background-color: RED;
+    }
+    .square{
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+    }
+    p{
+      margin-left: 0.5rem;
+    }
+  }
+}
