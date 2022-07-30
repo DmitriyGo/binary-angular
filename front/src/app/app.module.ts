@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {HttpClientModule} from "@angular/common/http";
 import {SharedModule} from "./shared/shared.module";
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { HomePageComponent } from './home-page/home-page.component';
 
 import {TasksModule} from "./main/tasks/tasks.module";
@@ -19,7 +18,6 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
-    PageNotFoundComponent,
     HomePageComponent
   ],
   imports: [
