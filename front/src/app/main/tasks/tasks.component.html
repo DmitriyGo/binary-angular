@@ -108,7 +108,7 @@
       <td>{{project.description.length > 20 ? project.description.slice(0,20)+'...' : project.description}}</td>
       <td>{{project.performerId}}</td>
       <td>{{project.projectId}}</td>
-      <td>{{project.state}}</td>
+      <td taskState [state]="project.state">{{project.state}}</td>
       <td>{{project.createdAt | ukrainianDate}}</td>
       <td>{{project.finishedAt | ukrainianDate}}</td>
       <td (click)="openModal('person-edit-modal', project);"><a><i class="fa-solid fa-info"></i></a></td>

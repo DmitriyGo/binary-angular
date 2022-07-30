@@ -19,7 +19,7 @@ import {ReactiveFormsModule} from "@angular/forms";
     RouterModule,
     CommonModule,
     UkrainianDatePipe,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ]
 
 

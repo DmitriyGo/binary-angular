@@ -9,7 +9,7 @@ export interface ProjTask{
   performer?: User,
   name: string,
   description: string,
-  state: 3,
+  state: number,
   createdAt: Date,
   finishedAt: Date
 }

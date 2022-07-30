@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { TasksComponent } from './tasks.component';
 import {SharedModule} from "../../shared/shared.module";
 import {RouterModule} from "@angular/router";
 import {ModalModule} from "../../_modal";
-import {ReactiveFormsModule} from "@angular/forms";
+import {StateDirective} from "./state.directive";
 
 
 
 @NgModule({
   declarations: [
-    TasksComponent
+    TasksComponent,
+    StateDirective
   ],
   imports: [
     SharedModule,
