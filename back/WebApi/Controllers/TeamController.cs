@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class TeamController : ControllerBase
     {
@@ -25,6 +25,12 @@ namespace WebApi.Controllers
         public async Task<Team> Get(int id)
         {
             return await _teamService.GetById(id);
+        }
+        
+        [HttpGet("{id}", Name = "GetTeamPage")]
+        public async Task<List<Team>> GetPage(int id)
+        {
+            return (await _teamService.GetAll()).FindAll(proj => proj.Id > id * 10 && proj.Id <= (id * 10) + 10 );
         }
 
         // POST: api/Team

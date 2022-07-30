@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class TaskController : ControllerBase
     {
@@ -18,6 +18,12 @@ namespace WebApi.Controllers
         public async Task<List<Task>> Get()
         {
             return await _taskService.GetAll();
+        }
+        
+        [HttpGet("{id}", Name = "GetTaskPage")]
+        public async Task<List<Task>> GetPage(int id)
+        {
+            return (await _taskService.GetAll()).FindAll(proj => proj.Id > id * 10 && proj.Id <= (id * 10) + 10 );
         }
 
         // GET: api/Task/5

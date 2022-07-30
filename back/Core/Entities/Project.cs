@@ -9,9 +9,9 @@ public class Project : BaseEntity
     [Key]
     public int Id { get; set; }
     public int? AuthorId { get; set; }
-    public User Author { get; set; }
+    public User? Author { get; set; }
     public int? TeamId { get; set; }
-    public Team Team { get; set; }
+    public Team? Team { get; set; }
     [MaxLength(60)]
     public string? Name { get; set; }
     [MaxLength(400)]

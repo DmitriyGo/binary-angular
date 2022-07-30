@@ -1,0 +1,24 @@
+
+nav{
+  margin-bottom: 2rem;
+}ul{
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  li{
+    a{
+      display: inline-block;
+      padding: 1rem 1.8rem;
+      transition: 0.2s ease;
+      text-decoration: none;
+      color: black;
+    }
+    &:hover{
+      border-bottom: 1px solid black;
+      transition: 0.2s ease;
+    }
+    &.active{
+      border-bottom: 1px solid black;
+    }
+  }
+}

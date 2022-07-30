@@ -1,0 +1,103 @@
+<div class="table-users">
+
+  <jw-modal id="person-add-modal">
+    <form (ngSubmit)="postPerson()" [formGroup]="form">
+      <h1>Input contact data</h1>
+      <div class="form-control" appearance="fill">
+        <label>User Id</label>
+        <input formControlName="id"  type="text"/>
+      </div>
+      <div class="form-control" appearance="fill">
+        <label>First Name</label>
+        <input formControlName="firstName"  type="text"/>
+      </div>
+      <div class="form-control" appearance="fill">
+        <label>Last Name</label>
+        <input formControlName="lastName"  type="text"/>
+      </div>
+      <div class="form-control" appearance="fill">
+        <label>Registere dAt</label>
+        <input formControlName="registeredAt"  type="text"/>
+      </div>
+      <div class="form-control" appearance="fill">
+        <label>Email</label>
+        <input formControlName="email"  type="text"/>
+      </div>
+      <div class="form-control" appearance="fill">
+        <label>Birthday</label>
+        <input formControlName="birthDay"  type="text"/>
+      </div>
+
+      <button
+        (click)="closeModal('person-edit-modal');"
+
+        type="submit"
+      >Add Project
+      </button>
+    </form>
+  </jw-modal>
+
+  <jw-modal id="person-edit-modal">
+    <form (ngSubmit)="putPerson()" [formGroup]="putForm">
+      <h1>Input contact data</h1>
+      <div class="form-control" appearance="fill">
+        <label>User Id</label>
+        <input formControlName="id"  type="text"/>
+      </div>
+      <div class="form-control" appearance="fill">
+        <label>First Name</label>
+        <input formControlName="firstName"  type="text"/>
+      </div>
+      <div class="form-control" appearance="fill">
+        <label>Last Name</label>
+        <input formControlName="lastName"  type="text"/>
+      </div>
+      <div class="form-control" appearance="fill">
+        <label>Registere dAt</label>
+        <input formControlName="registeredAt"  type="text"/>
+      </div>
+      <div class="form-control" appearance="fill">
+        <label>Email</label>
+        <input formControlName="email"  type="text"/>
+      </div>
+      <div class="form-control" appearance="fill">
+        <label>Birthday</label>
+        <input formControlName="birthDay"  type="text"/>
+      </div>
+
+      <button
+        (click)="closeModal('person-edit-modal');"
+        type="submit"
+      >Add
+      </button>
+    </form>
+  </jw-modal>
+
+
+  <table cellspacing="0" class="my-table">
+    <tr>
+      <!--      <th><a (click)="sortTable('name')">Name</a></th>-->
+      <th>Id</th>
+      <th>Full Name</th>
+      <th>Email</th>
+      <th>Registered at</th>
+      <th><a><i (click)="openModal('person-add-modal')" class="fa-solid fa-plus"></i></a></th>
+      <th></th>
+    </tr>
+
+    <tr *ngFor="let team of _users">
+      <td>{{team.id}}</td>
+      <td>{{team.firstName + " " + team.lastName}}</td>
+      <td>{{team.email}}</td>
+      <td>{{team.birthDay | ukrainianDate}}</td>
+      <td (click)="openModal('person-edit-modal', team);"><a><i class="fa-solid fa-info"></i></a></td>
+      <td (dblclick)="removePerson(team.id)"><a><i class="fa-solid fa-trash"></i></a></td>
+    </tr>
+  </table>
+
+  <div class="footer">
+    <span (click)="changePage(-1)"><</span>
+    <span>{{_pageNumber}}</span>
+    <span (click)="changePage(1)">></span>
+  </div>
+</div>

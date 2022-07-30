@@ -1,0 +1,114 @@
+<div class="table-users">
+
+  <jw-modal id="person-add-modal">
+    <form (ngSubmit)="postPerson()" [formGroup]="form">
+        <h1>Input contact data</h1>
+        <div class="form-control" style="display: none;" appearance="fill">
+          <label>Project Id</label>
+          <input formControlName="id"  type="text"/>
+        </div>
+        <div class="form-control" appearance="fill">
+          <label>Author Id</label>
+          <input formControlName="authorId"  type="number"/>
+        </div>
+        <div class="form-control" appearance="fill">
+          <label>Team Id</label>
+          <input formControlName="teamId"  type="number"/>
+        </div>
+        <div class="form-control" appearance="fill">
+          <label>Name</label>
+          <input formControlName="name"  type="text"/>
+        </div>
+        <div class="form-control" appearance="fill">
+          <label>Description</label>
+          <input formControlName="description"  type="text"/>
+        </div>
+        <div class="form-control" appearance="fill">
+          <label>Created At</label>
+          <input formControlName="createdAt"  type="date"/>
+        </div>
+        <div class="form-control" appearance="fill">
+          <label>Dead Line</label>
+          <input formControlName="deadLine"  type="date"/>
+        </div>
+
+        <button
+          (click)="closeModal('person-edit-modal');"
+
+          type="submit"
+        >Add Project
+        </button>
+    </form>
+  </jw-modal>
+
+  <jw-modal id="person-edit-modal">
+    <form (ngSubmit)="putPerson()" [formGroup]="putForm">
+      <h1>Input contact data</h1>
+      <div class="form-control" appearance="fill">
+        <label>Project Id</label>
+        <input formControlName="id"  type="text"/>
+      </div>
+      <div class="form-control" appearance="fill">
+        <label>Author Id</label>
+        <input formControlName="authorId"  type="number"/>
+      </div>
+      <div class="form-control" appearance="fill">
+        <label>Team Id</label>
+        <input formControlName="teamId"  type="number"/>
+      </div>
+      <div class="form-control" appearance="fill">
+        <label>Name</label>
+        <input formControlName="name"  type="text"/>
+      </div>
+      <div class="form-control" appearance="fill">
+        <label>Description</label>
+        <input formControlName="description"  type="text"/>
+      </div>
+      <div class="form-control" appearance="fill">
+        <label>Created At</label>
+        <input formControlName="createdAt"  type="text"/>
+      </div>
+      <div class="form-control" appearance="fill">
+        <label>Dead Line</label>
+        <input formControlName="deadLine"  type="text"/>
+      </div>
+
+      <button
+        (click)="closeModal('person-edit-modal');"
+        type="submit"
+      >Add
+      </button>
+    </form>
+  </jw-modal>
+
+
+  <table cellspacing="0" class="my-table">
+    <tr>
+<!--      <th><a (click)="sortTable('name')">Name</a></th>-->
+      <th>Name</th>
+      <th>Description</th>
+      <th>Author Id</th>
+<!--      <th><a (click)="sortTable('time')">Created At</a></th>-->
+      <th>Created At</th>
+      <th>Dead Line</th>
+      <th><a><i (click)="openModal('person-add-modal')" class="fa-solid fa-plus"></i></a></th>
+      <th></th>
+    </tr>
+
+    <tr *ngFor="let project of _projects">
+      <td>{{project.name}}</td>
+      <td>{{project.description.length > 20 ? project.description.slice(0,20)+'...' : project.description}}</td>
+      <td>{{project.authorId}}</td>
+      <td>{{project.createdAt | ukrainianDate}}</td>
+      <td>{{project.deadLine | ukrainianDate}}</td>
+      <td (click)="openModal('person-edit-modal', project);"><a><i class="fa-solid fa-info"></i></a></td>
+      <td (dblclick)="removePerson(project.id)"><a><i class="fa-solid fa-trash"></i></a></td>
+    </tr>
+  </table>
+
+  <div class="footer">
+    <span (click)="changePage(-1)"><</span>
+    <span>{{_pageNumber}}</span>
+    <span (click)="changePage(1)">></span>
+  </div>
+</div>

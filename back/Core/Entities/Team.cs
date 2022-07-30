@@ -12,6 +12,6 @@ public class Team : BaseEntity
     public string? Name { get; set; }
     [Column("Created At")]
     public DateTime CreatedAt { get; set; }
-    public ICollection<User> Users { get; set; }
-    public ICollection<Project> Projects { get; set; }
+    public ICollection<User>? Users { get; set; }
+    public ICollection<Project>? Projects { get; set; }
 }

@@ -5,7 +5,7 @@ using Task = System.Threading.Tasks.Task;
 
 namespace WebApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class ProjectController : ControllerBase
     {
@@ -19,6 +19,12 @@ namespace WebApi.Controllers
         public async Task<List<Project>> Get()
         {
             return await _projectService.GetAll();
+        }
+        
+        [HttpGet("{id}", Name = "GetProjectPage")]
+        public async Task<List<Project>> GetPage(int id)
+        {
+            return (await _projectService.GetAll()).FindAll(proj => proj.Id > id * 10 && proj.Id <= (id * 10) + 10 );
         }
 
         // GET: api/Project/5
