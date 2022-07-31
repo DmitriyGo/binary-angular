@@ -134,7 +134,7 @@ export class ProjectComponent implements OnInit {
 
   removePerson(personId: number) {
     this.personService.delete(personId).subscribe(u => {
-      this.loadPeople()
+      this.loadPeople().subscribe(r => this._projects = r)
     })
   }
 

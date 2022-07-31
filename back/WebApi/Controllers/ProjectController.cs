@@ -10,9 +10,11 @@ namespace WebApi.Controllers
     public class ProjectController : ControllerBase
     {
         private readonly ProjectService _projectService;
-        public ProjectController(ProjectService projectService)
+        private readonly TaskService _taskService;
+        public ProjectController(ProjectService projectService, TaskService taskService)
         {
             _projectService = projectService;
+            _taskService = taskService;
         }
         // GET: api/Project
         [HttpGet]
@@ -24,7 +26,7 @@ namespace WebApi.Controllers
         [HttpGet("{id}", Name = "GetProjectPage")]
         public async Task<List<Project>> GetPage(int id)
         {
-            return (await _projectService.GetAll()).FindAll(proj => proj.Id > id * 10 && proj.Id <= (id * 10) + 10 );
+            return (await _projectService.GetAll()).GetRange(id * 10, 10 );
         }
 
         // GET: api/Project/5
@@ -57,6 +59,14 @@ namespace WebApi.Controllers
         [HttpDelete("{id}")]
         public async Task Delete(int id)
         {
+            var collection = (await _projectService.GetById(id)).Tasks;
+            
+            if (collection != null)
+                foreach (var task in collection)
+                {
+                    await _taskService.Delete(task.Id);
+                }
+
             await _projectService.Delete(id);
         }
     }

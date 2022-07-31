@@ -12,9 +12,13 @@ namespace WebApi.Tests;
 
 public class ProjectControllerTests
 {
-    private ProjectService _projectService;
+    private  ProjectService _projectService;
     private  ProjectRepository _projectRepository;
     private  ProjectController _projectController;
+    
+    private  TaskService _taskService;
+    private  TaskRepository _taskRepository;
+    private  TaskController _taskController;
     
     public ProjectControllerTests()
     {
@@ -27,10 +31,13 @@ public class ProjectControllerTests
         inMemoryDbContext.Database.EnsureDeleted();
         
         _projectRepository = new ProjectRepository(inMemoryDbContext);
-        
+        _taskRepository = new TaskRepository(inMemoryDbContext);
+ 
         _projectService = new ProjectService(_projectRepository);
-
-        _projectController = new ProjectController(_projectService);
+        _taskService = new TaskService(_taskRepository);
+ 
+        _projectController = new ProjectController(_projectService, _taskService);
+       
     }
     
     [Fact]

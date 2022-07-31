@@ -30,7 +30,7 @@ namespace WebApi.Controllers
         [HttpGet("{id}", Name = "GetTeamPage")]
         public async Task<List<Team>> GetPage(int id)
         {
-            return (await _teamService.GetAll()).FindAll(proj => proj.Id > id * 10 && proj.Id <= (id * 10) + 10 );
+            return (await _teamService.GetAll()).GetRange(id * 10, 10 );
         }
 
         // POST: api/Team

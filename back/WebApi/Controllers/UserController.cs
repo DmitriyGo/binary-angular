@@ -24,7 +24,7 @@ namespace WebApi.Controllers
         [HttpGet("{id}", Name = "GetUserPage")]
         public async Task<List<User>> GetPage(int id)
         {
-            return (await _userService.GetAll()).FindAll(proj => proj.Id > id * 10 && proj.Id <= (id * 10) + 10 );
+            return (await _userService.GetAll()).GetRange(id * 10, 10 );
         }
 
         // GET: api/User/5

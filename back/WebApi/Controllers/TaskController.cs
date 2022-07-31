@@ -23,7 +23,7 @@ namespace WebApi.Controllers
         [HttpGet("{id}", Name = "GetTaskPage")]
         public async Task<List<Task>> GetPage(int id)
         {
-            return (await _taskService.GetAll()).FindAll(proj => proj.Id > id * 10 && proj.Id <= (id * 10) + 10 );
+            return (await _taskService.GetAll()).GetRange(id * 10, 10 );
         }
 
         // GET: api/Task/5
